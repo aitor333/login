@@ -132,7 +132,6 @@ function getNombreFromCorreo($correo){
 function getUserFromPassword($password){
     $conn = conectarBD();
     $sql = "SELECT nombre FROM usuarios WHERE contrasena='$password'";
-    echo $sql;
     $result = mysqli_query($conn,$sql);
     while($mostrar=mysqli_fetch_array($result)){
       return $mostrar["nombre"];
@@ -151,7 +150,6 @@ function getUsername($nombre){
 function getPassword($user){
     $conn = conectarBD();
     $sql = "SELECT contrasena FROM usuarios WHERE correo='$user'";
-    echo $sql;
     $result = mysqli_query($conn,$sql);
     while($mostrar=mysqli_fetch_array($result)){
       return $mostrar["contrasena"];
@@ -162,7 +160,6 @@ function getCorreo($correo){
     $conn = conectarBD();
     $sql = "SELECT correo FROM usuarios WHERE correo='$correo'";
     $result = mysqli_query($conn,$sql);
-
     while($mostrar=mysqli_fetch_array($result)){
       return $mostrar["correo"];
     }
