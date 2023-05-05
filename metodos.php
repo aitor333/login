@@ -30,7 +30,7 @@ function validarUser($user,$password){
             $datosValidadosLogin = array();
             array_push($datosValidadosLogin,$username,$password,$correo);
 
-            if(!insertarUsuario($username,$password,$correo)){
+            if(insertarUsuario($username,$password,$correo)){
                 return true;
             }else{
                return false;
@@ -150,7 +150,8 @@ function getUsername($nombre){
 
 function getPassword($user){
     $conn = conectarBD();
-    $sql = "SELECT contrasena FROM usuarios WHERE nombre='$user'";
+    $sql = "SELECT contrasena FROM usuarios WHERE correo='$user'";
+    echo $sql;
     $result = mysqli_query($conn,$sql);
     while($mostrar=mysqli_fetch_array($result)){
       return $mostrar["contrasena"];

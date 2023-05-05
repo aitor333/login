@@ -42,10 +42,10 @@ const user = 2;
 			$_SESSION['nombreBd'] = getCorreo($_POST['username']);
 			$_SESSION['contrasenaForm'] = $_POST['password'];
 			$_SESSION['contrasenaBd'] = getPassword($_POST['username']);
-			if(!password_verify($_SESSION['contrasenaForm'],$_SESSION['contrasenaBd']) && $_SESSION['nombreForm'] == $_SESSION['nombreBd']){
+			if(password_verify($_SESSION['contrasenaForm'],$_SESSION['contrasenaBd'])){
 				header("location:menu.php");
 			}else{
-				echo "Password incorrecto";
+				echo "Password Incorrecto"."<br>";
 			}
 		}
 	?>

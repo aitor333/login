@@ -26,7 +26,7 @@ showData();
       <?php
         if(isset($_POST['registrar'])){
             $state = validarUser($_POST['username'],$_POST['password']);
-            if(!$state){
+            if($state){
 				header("location:login.php");
 			}else{
 				echo "Fallo al registrar,el usuario y el correo ya existen";
