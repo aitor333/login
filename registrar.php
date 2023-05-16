@@ -29,7 +29,12 @@ showData();
             if($state){
 				header("location:login.php");
 			}else{
-				echo "Fallo al registrar,el usuario y el correo ya existen";
+				try{
+					echo "Fallo al registrar,el usuario y el correo ya existen";
+				} catch (mysqli_sql_exception $e) {
+					echo "Error al validar el usuario: " . $e.getMessage();
+				}
+				
 			}
 			
         }

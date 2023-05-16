@@ -2,8 +2,6 @@
 session_start();
 require_once './metodos.php';
 require_once './header.php';
-const admin = 1;
-const user = 2;
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,15 +35,23 @@ const user = 2;
 			</div>
 		</form>
 		<?php
-		if(isset($_POST['login'])){
-			$_SESSION['nombreForm'] = $_POST['username'];
-			$_SESSION['nombreBd'] = getCorreo($_POST['username']);
-			$_SESSION['contrasenaForm'] = $_POST['password'];
-			$_SESSION['contrasenaBd'] = getPassword($_POST['username']);
-			if(password_verify($_SESSION['contrasenaForm'],$_SESSION['contrasenaBd'])){
-				header("location:menu.php");
-			}else{
-				echo "Password Incorrecto"."<br>";
+		$rol = 0;
+		if($rol ==0){
+			header("location:login.php");
+		}else{
+			if(isset($_POST['login'])){
+				$_SESSION['nombreForm'] = $_POST['username'];
+				$_SESSION['nombreBd'] = getCorreo($_POST['username']);
+				$_SESSION['contrasenaForm'] = $_POST['password'];
+				$_SESSION['contrasenaBd'] = getPassword($_POST['username']);
+				if(password_verify($_SESSION['contrasenaForm'],$_SESSION['contrasenaBd'])){
+					$rol =1;
+					header("location:menu.php");
+				}else{
+					echo "Password Incorrecto"."<br>";
+					$rol =0;
+					header("location:login.php");
+				}
 			}
 		}
 	?>
